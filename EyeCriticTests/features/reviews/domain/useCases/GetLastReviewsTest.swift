@@ -12,7 +12,7 @@ import Combine
 class GetLastReviewsTest: XCTestCase {
     var mockSuccessReviewsRepository: ReviewsRepository!
     var mockFailureReviewsRepository: ReviewsRepository!
-    var useCase: GetReviews!
+    var useCase: GetLastReviews!
     var cancellables: Set<AnyCancellable>!
     
     override func setUp() {
@@ -27,8 +27,8 @@ class GetLastReviewsTest: XCTestCase {
     }
 
     func testShouldGetDataSuccessfulyWhenCallingRepository() {
-        self.useCase = GetReviews(repository: self.mockSuccessReviewsRepository)
-        var string: String?
+        self.useCase = GetLastReviews(repository: self.mockSuccessReviewsRepository)
+        var reviews: [Review]?
         var error: Error?
         let expectation = self.expectation(description: "String")
         
@@ -43,19 +43,29 @@ class GetLastReviewsTest: XCTestCase {
             }
             expectation.fulfill()
         } receiveValue: { value in
-            string = value
+            reviews = value
         }
         .store(in: &cancellables)
         
         waitForExpectations(timeout: 10)
 
         XCTAssertNil(error)
-        XCTAssertEqual(string, "String")
+        XCTAssertEqual(reviews, [Review(
+            displayTitle: "Title 1",
+            rating: "4",
+            byLine: "line 1",
+            headline: "headline 1",
+            summary: "Summary 1",
+            publicationDate: "00/00/0000",
+            imageUrl: "https://",
+            link: "https://",
+            favorite: false
+        )])
     }
     
     func testShouldGetErrorWhenCallingRepository() {
-        self.useCase = GetReviews(repository: self.mockFailureReviewsRepository)
-        var string: String?
+        self.useCase = GetLastReviews(repository: self.mockFailureReviewsRepository)
+        var review: [Review]?
         var error: Failure?
         let expectation = self.expectation(description: "Failure")
         
@@ -70,7 +80,7 @@ class GetLastReviewsTest: XCTestCase {
             }
             expectation.fulfill()
         } receiveValue: { value in
-            string = value
+            review = value
         }
         .store(in: &cancellables)
         
@@ -78,19 +88,30 @@ class GetLastReviewsTest: XCTestCase {
 
         XCTAssertNotNil(error)
         XCTAssertEqual(error?.type, .server)
-        XCTAssertNil(string)
+        XCTAssertNil(review)
     }
 }
 
 class MockSuccessReviewsRepository: ReviewsRepository {
-    func getLastReviews() -> AnyPublisher<String, Failure> {
-        return Result.Publisher("String")
-            .eraseToAnyPublisher()
+    func getLastReviews() -> AnyPublisher<[Review], Failure> {
+        return Result.Publisher([Review(
+                    displayTitle: "Title 1",
+                    rating: "4",
+                    byLine: "line 1",
+                    headline: "headline 1",
+                    summary: "Summary 1",
+                    publicationDate: "00/00/0000",
+                    imageUrl: "https://",
+                    link: "https://",
+                    favorite: false
+                )]
+        )
+        .eraseToAnyPublisher()
     }
 }
 
 class MockFailureReviewsRepository: ReviewsRepository {
-    func getLastReviews() -> AnyPublisher<String, Failure> {
+    func getLastReviews() -> AnyPublisher<[Review], Failure> {
         return Result.Publisher(Failure(type: .server))
             .eraseToAnyPublisher()
     }

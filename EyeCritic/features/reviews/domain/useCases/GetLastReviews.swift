@@ -8,10 +8,10 @@
 import Foundation
 import Combine
 
-struct GetReviews {
+struct GetLastReviews {
     var repository: ReviewsRepository
     
-    func execute() -> AnyPublisher<String, Failure> {
+    func execute() -> AnyPublisher<[Review], Failure> {
         return repository.getLastReviews()
     }
 }

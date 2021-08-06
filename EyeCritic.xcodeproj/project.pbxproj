@@ -19,12 +19,15 @@
 		340C1F6B26BDC93000CAECEB /* ReviewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F6A26BDC93000CAECEB /* ReviewsRepository.swift */; };
 		340C1F6F26BDCA0300CAECEB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F6E26BDCA0300CAECEB /* API.swift */; };
 		340C1F7526BDCACD00CAECEB /* GetLastReviewsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F7426BDCACD00CAECEB /* GetLastReviewsTest.swift */; };
-		340C1F7926BDCD6800CAECEB /* GetReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F7826BDCD6800CAECEB /* GetReviews.swift */; };
+		340C1F7926BDCD6800CAECEB /* GetLastReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F7826BDCD6800CAECEB /* GetLastReviews.swift */; };
 		340C1F7E26BDD90200CAECEB /* Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F7D26BDD90200CAECEB /* Failure.swift */; };
 		340C1F8926BDE00600CAECEB /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F8826BDE00600CAECEB /* Review.swift */; };
 		340C1F8B26BDE0B400CAECEB /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F8A26BDE0B400CAECEB /* ReviewModel.swift */; };
 		340C1F8D26BDE0F800CAECEB /* ApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F8C26BDE0F800CAECEB /* ApiResult.swift */; };
 		340C1F9126BDE2D700CAECEB /* ReviewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F9026BDE2D700CAECEB /* ReviewModelTest.swift */; };
+		340C1F9426BDE6E700CAECEB /* NetworkInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F9326BDE6E700CAECEB /* NetworkInfo.swift */; };
+		340C1F9626BDE7C100CAECEB /* ReviewsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F9526BDE7C100CAECEB /* ReviewsRepositoryImpl.swift */; };
+		340C1F9926BDE86200CAECEB /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F9826BDE86200CAECEB /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,12 +65,15 @@
 		340C1F6A26BDC93000CAECEB /* ReviewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsRepository.swift; sourceTree = "<group>"; };
 		340C1F6E26BDCA0300CAECEB /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		340C1F7426BDCACD00CAECEB /* GetLastReviewsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLastReviewsTest.swift; sourceTree = "<group>"; };
-		340C1F7826BDCD6800CAECEB /* GetReviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReviews.swift; sourceTree = "<group>"; };
+		340C1F7826BDCD6800CAECEB /* GetLastReviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLastReviews.swift; sourceTree = "<group>"; };
 		340C1F7D26BDD90200CAECEB /* Failure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Failure.swift; sourceTree = "<group>"; };
 		340C1F8826BDE00600CAECEB /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		340C1F8A26BDE0B400CAECEB /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
 		340C1F8C26BDE0F800CAECEB /* ApiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResult.swift; sourceTree = "<group>"; };
 		340C1F9026BDE2D700CAECEB /* ReviewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModelTest.swift; sourceTree = "<group>"; };
+		340C1F9326BDE6E700CAECEB /* NetworkInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfo.swift; sourceTree = "<group>"; };
+		340C1F9526BDE7C100CAECEB /* ReviewsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsRepositoryImpl.swift; sourceTree = "<group>"; };
+		340C1F9826BDE86200CAECEB /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +173,7 @@
 		340C1F5726BDC1F000CAECEB /* core */ = {
 			isa = PBXGroup;
 			children = (
+				340C1F9226BDE6D700CAECEB /* network */,
 				340C1F7B26BDD8E300CAECEB /* errors */,
 				340C1F6C26BDC9D900CAECEB /* utils */,
 				340C1F6626BDC42D00CAECEB /* domain */,
@@ -248,7 +255,7 @@
 		340C1F6026BDC25700CAECEB /* useCases */ = {
 			isa = PBXGroup;
 			children = (
-				340C1F7826BDCD6800CAECEB /* GetReviews.swift */,
+				340C1F7826BDCD6800CAECEB /* GetLastReviews.swift */,
 			);
 			path = useCases;
 			sourceTree = "<group>";
@@ -264,6 +271,7 @@
 		340C1F6226BDC3D300CAECEB /* repositories */ = {
 			isa = PBXGroup;
 			children = (
+				340C1F9526BDE7C100CAECEB /* ReviewsRepositoryImpl.swift */,
 			);
 			path = repositories;
 			sourceTree = "<group>";
@@ -295,6 +303,7 @@
 		340C1F6C26BDC9D900CAECEB /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				340C1F9726BDE85300CAECEB /* data */,
 				340C1F6D26BDC9DF00CAECEB /* constants */,
 			);
 			path = utils;
@@ -363,6 +372,22 @@
 				340C1F9026BDE2D700CAECEB /* ReviewModelTest.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		340C1F9226BDE6D700CAECEB /* network */ = {
+			isa = PBXGroup;
+			children = (
+				340C1F9326BDE6E700CAECEB /* NetworkInfo.swift */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
+		340C1F9726BDE85300CAECEB /* data */ = {
+			isa = PBXGroup;
+			children = (
+				340C1F9826BDE86200CAECEB /* Data.swift */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,12 +527,15 @@
 			files = (
 				340C1F7E26BDD90200CAECEB /* Failure.swift in Sources */,
 				340C1F3026BDAE8800CAECEB /* Persistence.swift in Sources */,
+				340C1F9426BDE6E700CAECEB /* NetworkInfo.swift in Sources */,
 				340C1F8B26BDE0B400CAECEB /* ReviewModel.swift in Sources */,
 				340C1F8926BDE00600CAECEB /* Review.swift in Sources */,
 				340C1F2926BDAE8700CAECEB /* ContentView.swift in Sources */,
-				340C1F7926BDCD6800CAECEB /* GetReviews.swift in Sources */,
+				340C1F7926BDCD6800CAECEB /* GetLastReviews.swift in Sources */,
+				340C1F9926BDE86200CAECEB /* Data.swift in Sources */,
 				340C1F6B26BDC93000CAECEB /* ReviewsRepository.swift in Sources */,
 				340C1F2726BDAE8700CAECEB /* EyeCriticApp.swift in Sources */,
+				340C1F9626BDE7C100CAECEB /* ReviewsRepositoryImpl.swift in Sources */,
 				340C1F6F26BDCA0300CAECEB /* API.swift in Sources */,
 				340C1F8D26BDE0F800CAECEB /* ApiResult.swift in Sources */,
 				340C1F3326BDAE8800CAECEB /* EyeCritic.xcdatamodeld in Sources */,

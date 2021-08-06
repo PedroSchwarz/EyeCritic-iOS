@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol ReviewsRepository {
-    func getLastReviews() -> AnyPublisher<String, Failure>
+    func getLastReviews() -> AnyPublisher<[Review], Failure>
 }
