@@ -21,6 +21,10 @@
 		340C1F7526BDCACD00CAECEB /* GetLastReviewsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F7426BDCACD00CAECEB /* GetLastReviewsTest.swift */; };
 		340C1F7926BDCD6800CAECEB /* GetReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F7826BDCD6800CAECEB /* GetReviews.swift */; };
 		340C1F7E26BDD90200CAECEB /* Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F7D26BDD90200CAECEB /* Failure.swift */; };
+		340C1F8926BDE00600CAECEB /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F8826BDE00600CAECEB /* Review.swift */; };
+		340C1F8B26BDE0B400CAECEB /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F8A26BDE0B400CAECEB /* ReviewModel.swift */; };
+		340C1F8D26BDE0F800CAECEB /* ApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F8C26BDE0F800CAECEB /* ApiResult.swift */; };
+		340C1F9126BDE2D700CAECEB /* ReviewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F9026BDE2D700CAECEB /* ReviewModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +64,10 @@
 		340C1F7426BDCACD00CAECEB /* GetLastReviewsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLastReviewsTest.swift; sourceTree = "<group>"; };
 		340C1F7826BDCD6800CAECEB /* GetReviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReviews.swift; sourceTree = "<group>"; };
 		340C1F7D26BDD90200CAECEB /* Failure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Failure.swift; sourceTree = "<group>"; };
+		340C1F8826BDE00600CAECEB /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		340C1F8A26BDE0B400CAECEB /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
+		340C1F8C26BDE0F800CAECEB /* ApiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResult.swift; sourceTree = "<group>"; };
+		340C1F9026BDE2D700CAECEB /* ReviewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				340C1F3126BDAE8800CAECEB /* EyeCritic.xcdatamodeld */,
+				340C1F8826BDE00600CAECEB /* Review.swift */,
 			);
 			path = entities;
 			sourceTree = "<group>";
@@ -262,6 +271,8 @@
 		340C1F6326BDC3DA00CAECEB /* models */ = {
 			isa = PBXGroup;
 			children = (
+				340C1F8A26BDE0B400CAECEB /* ReviewModel.swift */,
+				340C1F8C26BDE0F800CAECEB /* ApiResult.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -308,6 +319,7 @@
 		340C1F7126BDCAA000CAECEB /* reviews */ = {
 			isa = PBXGroup;
 			children = (
+				340C1F8E26BDE2BC00CAECEB /* data */,
 				340C1F7226BDCAA900CAECEB /* domain */,
 			);
 			path = reviews;
@@ -335,6 +347,22 @@
 				340C1F7D26BDD90200CAECEB /* Failure.swift */,
 			);
 			path = errors;
+			sourceTree = "<group>";
+		};
+		340C1F8E26BDE2BC00CAECEB /* data */ = {
+			isa = PBXGroup;
+			children = (
+				340C1F8F26BDE2BF00CAECEB /* models */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		340C1F8F26BDE2BF00CAECEB /* models */ = {
+			isa = PBXGroup;
+			children = (
+				340C1F9026BDE2D700CAECEB /* ReviewModelTest.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,11 +502,14 @@
 			files = (
 				340C1F7E26BDD90200CAECEB /* Failure.swift in Sources */,
 				340C1F3026BDAE8800CAECEB /* Persistence.swift in Sources */,
+				340C1F8B26BDE0B400CAECEB /* ReviewModel.swift in Sources */,
+				340C1F8926BDE00600CAECEB /* Review.swift in Sources */,
 				340C1F2926BDAE8700CAECEB /* ContentView.swift in Sources */,
 				340C1F7926BDCD6800CAECEB /* GetReviews.swift in Sources */,
 				340C1F6B26BDC93000CAECEB /* ReviewsRepository.swift in Sources */,
 				340C1F2726BDAE8700CAECEB /* EyeCriticApp.swift in Sources */,
 				340C1F6F26BDCA0300CAECEB /* API.swift in Sources */,
+				340C1F8D26BDE0F800CAECEB /* ApiResult.swift in Sources */,
 				340C1F3326BDAE8800CAECEB /* EyeCritic.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				340C1F9126BDE2D700CAECEB /* ReviewModelTest.swift in Sources */,
 				340C1F7526BDCACD00CAECEB /* GetLastReviewsTest.swift in Sources */,
 				340C1F3E26BDAE8800CAECEB /* EyeCriticTests.swift in Sources */,
 			);
