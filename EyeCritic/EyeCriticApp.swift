@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import Swinject
 
 @main
 struct EyeCriticApp: App {
-    let persistenceController = PersistenceController.shared
-
+    
+    init() {
+        AppModules.declareModules()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ReviewsList()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

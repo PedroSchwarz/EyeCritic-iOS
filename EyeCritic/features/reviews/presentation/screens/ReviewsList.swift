@@ -6,16 +6,12 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct ReviewsList: View {
-    @StateObject private var viewModel = ReviewsViewModel(useCase: GetLastReviews(repository: ReviewsRepositoryImpl(
-        network: NetworkInfoImpl(),
-        remote: ReviewsRemoteDataSourceImpl(service: ReviewsService()),
-        local: ReviewsLocalDataSourceImpl(viewContext: PersistenceController.shared.container.viewContext)
-    )))
+    @StateObject private var viewModel = AppModules.container.resolve(ReviewsViewModel.self)!
     
     var body: some View {
-        
         NavigationView {
             switch viewModel.state {
                 case .initial:
