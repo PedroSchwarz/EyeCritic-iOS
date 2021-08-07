@@ -6,7 +6,24 @@
 //
 
 import Foundation
+import Network
 
 protocol NetworkInfo {
     func isConnected() -> Bool
+}
+
+struct NetworkInfoImpl: NetworkInfo {
+    func isConnected() -> Bool {
+        return false
+//        var monitor = NWPathMonitor()
+//        monitor.pathUpdateHandler = { path in
+//            if path.status == .satisfied {
+//                    return true
+//                } else {
+//                    return false
+//                }
+//        }
+//        let queue = DispatchQueue(label: "Monitor")
+//        monitor.start(queue: queue)
+    }
 }

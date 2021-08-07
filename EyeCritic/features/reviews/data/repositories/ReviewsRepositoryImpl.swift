@@ -8,13 +8,27 @@
 import Foundation
 import Combine
 
-struct ReviewRepositoryImpl: ReviewsRepository {
+struct ReviewsRepositoryImpl: ReviewsRepository {
+    var network: NetworkInfo
+    var remote: ReviewsRemoteDataSource
+    var local: ReviewsLocalDataSource
+    
     func getLastReviews() -> AnyPublisher<[Review], Failure> {
-        return Result.Publisher(
-            [
-                mockReview
-            ]
-        )
-            .eraseToAnyPublisher()
+        if network.isConnected() {
+            return remote.getLastReview()
+                .handleEvents(receiveOutput: { result in
+                    local.cacheReviews(reviews: result.results)
+                })
+                .map({ result in
+                    result.results.map { $0.toReview() }
+                })
+                .eraseToAnyPublisher()
+        } else {
+            return local.getCachedReview()
+                .map({ result in
+                    result.map { $0.toReview() }
+                })
+                .eraseToAnyPublisher()
+        }
     }
 }

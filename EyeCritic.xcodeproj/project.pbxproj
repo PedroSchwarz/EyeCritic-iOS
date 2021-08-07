@@ -28,6 +28,11 @@
 		340C1F9426BDE6E700CAECEB /* NetworkInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F9326BDE6E700CAECEB /* NetworkInfo.swift */; };
 		340C1F9626BDE7C100CAECEB /* ReviewsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F9526BDE7C100CAECEB /* ReviewsRepositoryImpl.swift */; };
 		340C1F9926BDE86200CAECEB /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F9826BDE86200CAECEB /* Data.swift */; };
+		340C1F9B26BDEA2800CAECEB /* ReviewsRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F9A26BDEA2800CAECEB /* ReviewsRemoteDataSource.swift */; };
+		340C1F9D26BDEB3C00CAECEB /* ReviewsLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1F9C26BDEB3C00CAECEB /* ReviewsLocalDataSource.swift */; };
+		340C1FA226BDEC0300CAECEB /* ReviewsRepositoryImplTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1FA126BDEC0300CAECEB /* ReviewsRepositoryImplTest.swift */; };
+		340C1FA426BE2A8200CAECEB /* ReviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1FA326BE2A8200CAECEB /* ReviewsViewModel.swift */; };
+		340C1FA626BE2BEC00CAECEB /* ReviewsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C1FA526BE2BEC00CAECEB /* ReviewsList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +79,11 @@
 		340C1F9326BDE6E700CAECEB /* NetworkInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfo.swift; sourceTree = "<group>"; };
 		340C1F9526BDE7C100CAECEB /* ReviewsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsRepositoryImpl.swift; sourceTree = "<group>"; };
 		340C1F9826BDE86200CAECEB /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		340C1F9A26BDEA2800CAECEB /* ReviewsRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsRemoteDataSource.swift; sourceTree = "<group>"; };
+		340C1F9C26BDEB3C00CAECEB /* ReviewsLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsLocalDataSource.swift; sourceTree = "<group>"; };
+		340C1FA126BDEC0300CAECEB /* ReviewsRepositoryImplTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsRepositoryImplTest.swift; sourceTree = "<group>"; };
+		340C1FA326BE2A8200CAECEB /* ReviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewModel.swift; sourceTree = "<group>"; };
+		340C1FA526BE2BEC00CAECEB /* ReviewsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				340C1F2826BDAE8700CAECEB /* ContentView.swift */,
+				340C1FA526BE2BEC00CAECEB /* ReviewsList.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -232,6 +243,7 @@
 		340C1F5D26BDC22700CAECEB /* viewModels */ = {
 			isa = PBXGroup;
 			children = (
+				340C1FA326BE2A8200CAECEB /* ReviewsViewModel.swift */,
 			);
 			path = viewModels;
 			sourceTree = "<group>";
@@ -288,6 +300,8 @@
 		340C1F6426BDC3E400CAECEB /* dataSources */ = {
 			isa = PBXGroup;
 			children = (
+				340C1F9A26BDEA2800CAECEB /* ReviewsRemoteDataSource.swift */,
+				340C1F9C26BDEB3C00CAECEB /* ReviewsLocalDataSource.swift */,
 			);
 			path = dataSources;
 			sourceTree = "<group>";
@@ -361,6 +375,7 @@
 		340C1F8E26BDE2BC00CAECEB /* data */ = {
 			isa = PBXGroup;
 			children = (
+				340C1F9E26BDEBCE00CAECEB /* repositories */,
 				340C1F8F26BDE2BF00CAECEB /* models */,
 			);
 			path = data;
@@ -388,6 +403,14 @@
 				340C1F9826BDE86200CAECEB /* Data.swift */,
 			);
 			path = data;
+			sourceTree = "<group>";
+		};
+		340C1F9E26BDEBCE00CAECEB /* repositories */ = {
+			isa = PBXGroup;
+			children = (
+				340C1FA126BDEC0300CAECEB /* ReviewsRepositoryImplTest.swift */,
+			);
+			path = repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -526,6 +549,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				340C1F7E26BDD90200CAECEB /* Failure.swift in Sources */,
+				340C1F9B26BDEA2800CAECEB /* ReviewsRemoteDataSource.swift in Sources */,
+				340C1F9D26BDEB3C00CAECEB /* ReviewsLocalDataSource.swift in Sources */,
 				340C1F3026BDAE8800CAECEB /* Persistence.swift in Sources */,
 				340C1F9426BDE6E700CAECEB /* NetworkInfo.swift in Sources */,
 				340C1F8B26BDE0B400CAECEB /* ReviewModel.swift in Sources */,
@@ -533,6 +558,8 @@
 				340C1F2926BDAE8700CAECEB /* ContentView.swift in Sources */,
 				340C1F7926BDCD6800CAECEB /* GetLastReviews.swift in Sources */,
 				340C1F9926BDE86200CAECEB /* Data.swift in Sources */,
+				340C1FA426BE2A8200CAECEB /* ReviewsViewModel.swift in Sources */,
+				340C1FA626BE2BEC00CAECEB /* ReviewsList.swift in Sources */,
 				340C1F6B26BDC93000CAECEB /* ReviewsRepository.swift in Sources */,
 				340C1F2726BDAE8700CAECEB /* EyeCriticApp.swift in Sources */,
 				340C1F9626BDE7C100CAECEB /* ReviewsRepositoryImpl.swift in Sources */,
@@ -547,6 +574,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				340C1F9126BDE2D700CAECEB /* ReviewModelTest.swift in Sources */,
+				340C1FA226BDEC0300CAECEB /* ReviewsRepositoryImplTest.swift in Sources */,
 				340C1F7526BDCACD00CAECEB /* GetLastReviewsTest.swift in Sources */,
 				340C1F3E26BDAE8800CAECEB /* EyeCriticTests.swift in Sources */,
 			);

@@ -30,6 +30,19 @@ struct ReviewModel: Codable {
             favorite: false
         )
     }
+    
+    static func fromLocalReview(data: ReviewData) -> ReviewModel {
+        return ReviewModel(
+                display_title: data.display_title!,
+                mpaa_rating: data.mpaa_rating!,
+                byline: data.byline!,
+                headline: data.headline!,
+                summary_short: data.summary_short!,
+                publication_date: data.publication_date!,
+                multimedia: Multimedia(src: data.imageUrl!),
+                link: Link(url: data.link!)
+            )
+    }
 }
 
 struct Multimedia: Codable {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FailureType: String {
+enum FailureType: String, CaseIterable {
     case server = "ServerFailure"
     case cache = "CacheFailure"
 }
