@@ -8,14 +8,19 @@
 import Foundation
 import CoreData
 import Swinject
+import Network
 
 struct AppModules {
     // Container
     static var container = Container()
     
     static func declareModules() {
+        let monitor = NWPathMonitor()
+        monitor.start(queue: DispatchQueue(label: "Network monitor"))
+        
         // Utils
-        container.register(NetworkInfo.self) { _ in NetworkInfoImpl() }
+        container.register(NWPathMonitor.self) { _ in monitor }
+        container.register(NetworkInfo.self) { r in NetworkInfoImpl(monitor: r.resolve(NWPathMonitor.self)!) }
         container.register(NSManagedObjectContext.self) { _ in  PersistenceController.shared.container.viewContext }
 
         // DataSources

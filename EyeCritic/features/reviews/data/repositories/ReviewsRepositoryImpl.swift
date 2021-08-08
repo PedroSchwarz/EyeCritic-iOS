@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Network
 
 struct ReviewsRepositoryImpl: ReviewsRepository {
     var network: NetworkInfo

@@ -10,20 +10,13 @@ import Network
 
 protocol NetworkInfo {
     func isConnected() -> Bool
+    
 }
 
 struct NetworkInfoImpl: NetworkInfo {
+    var monitor: NWPathMonitor
+     
     func isConnected() -> Bool {
-        return true
-//        var monitor = NWPathMonitor()
-//        monitor.pathUpdateHandler = { path in
-//            if path.status == .satisfied {
-//                    return true
-//                } else {
-//                    return false
-//                }
-//        }
-//        let queue = DispatchQueue(label: "Monitor")
-//        monitor.start(queue: queue)
+        return monitor.currentPath.status == .satisfied
     }
 }

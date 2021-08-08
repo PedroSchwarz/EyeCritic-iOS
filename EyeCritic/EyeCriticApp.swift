@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Swinject
 
 @main
 struct EyeCriticApp: App {
@@ -17,7 +16,7 @@ struct EyeCriticApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LastReviewsScreen()
+            ReviewTabView()
         }
     }
 }
