@@ -49,7 +49,6 @@ struct ReviewsListItem: View {
         .onAppear(perform: {
             self.viewModel.getProductImage(imageUrl: review.imageUrl)
         })
-        .navigationTitle("Latest Reviews")
     }
 }
 

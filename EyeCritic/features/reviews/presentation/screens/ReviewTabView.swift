@@ -15,7 +15,7 @@ struct ReviewTabView: View {
                     Image(systemName: "book")
                     Text("Latest Reviews")
                 }
-            Text("asdasd")
+            SearchReviewsScreen()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search Reviews")

@@ -19,6 +19,7 @@ struct LastReviewsScreen: View {
                     ReviewsLoading()
                 case .success(let reviews):
                     ReviewsList(reviews: reviews)
+                        .navigationTitle("Latest Reviews")
                 case .failure(let error):
                     ReviewsError(error: error)
             }
