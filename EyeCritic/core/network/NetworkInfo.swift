@@ -14,7 +14,7 @@ protocol NetworkInfo {
 
 struct NetworkInfoImpl: NetworkInfo {
     func isConnected() -> Bool {
-        return false
+        return true
 //        var monitor = NWPathMonitor()
 //        monitor.pathUpdateHandler = { path in
 //            if path.status == .satisfied {

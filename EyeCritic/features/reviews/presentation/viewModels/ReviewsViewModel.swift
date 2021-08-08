@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-enum State {
+enum ReviewsState {
     case initial
     case loading
     case failure(error: String)
@@ -23,7 +23,7 @@ class ReviewsViewModel: ObservableObject {
         self.useCase = useCase
     }
     
-    @Published private(set) var state: State = .initial
+    @Published private(set) var state: ReviewsState = .initial
     private var cancellables = Set<AnyCancellable>()
     
     func getLastReviews() {

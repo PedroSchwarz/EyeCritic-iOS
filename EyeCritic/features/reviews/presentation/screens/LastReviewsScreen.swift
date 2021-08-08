@@ -1,31 +1,26 @@
 //
-//  ReviewsList.swift
+//  LastReviewsScreen.swift
 //  EyeCritic
 //
-//  Created by Pedro Rodrigues on 06/08/21.
+//  Created by Pedro Rodrigues on 07/08/21.
 //
 
 import SwiftUI
-import Swinject
 
-struct ReviewsList: View {
+struct LastReviewsScreen: View {
     @StateObject private var viewModel = AppModules.container.resolve(ReviewsViewModel.self)!
     
     var body: some View {
         NavigationView {
             switch viewModel.state {
                 case .initial:
-                    Text("Wait")
+                    ReviewsLoading()
                 case .loading:
-                    ProgressView()
+                    ReviewsLoading()
                 case .success(let reviews):
-                    List {
-                        ForEach(reviews) { item in
-                            Text(item.displayTitle)
-                        }
-                    }
+                    ReviewsList(reviews: reviews)
                 case .failure(let error):
-                    Text(error)
+                    ReviewsError(error: error)
             }
         }
         .onAppear {
@@ -34,8 +29,8 @@ struct ReviewsList: View {
     }
 }
 
-struct ReviewsList_Previews: PreviewProvider {
+struct LastReviewsScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewsList()
+        LastReviewsScreen()
     }
 }

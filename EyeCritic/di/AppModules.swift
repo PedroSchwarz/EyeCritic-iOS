@@ -36,5 +36,6 @@ struct AppModules {
 
         // ViewModels
         container.register(ReviewsViewModel.self) { r in ReviewsViewModel(useCase: r.resolve(GetLastReviews.self)!) }
+        container.register(ReviewsListItemViewModel.self) { r in ReviewsListItemViewModel() }
     }
 }

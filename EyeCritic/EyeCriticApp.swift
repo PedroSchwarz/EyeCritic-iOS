@@ -17,7 +17,7 @@ struct EyeCriticApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ReviewsList()
+            LastReviewsScreen()
         }
     }
 }
