@@ -10,4 +10,6 @@ import Combine
 
 protocol ReviewsRepository {
     func getLastReviews() -> AnyPublisher<[Review], Failure>
+    
+    func searchReviews(title: String) -> AnyPublisher<[Review], Failure>
 }

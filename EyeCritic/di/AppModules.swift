@@ -13,8 +13,9 @@ import Network
 struct AppModules {
     // Container
     static var container = Container()
-    
+    // Declare DI Modules
     static func declareModules() {
+        // Init NWPathMonitor
         let monitor = NWPathMonitor()
         monitor.start(queue: DispatchQueue(label: "Network monitor"))
         
@@ -38,6 +39,7 @@ struct AppModules {
         
         // UseCases
         container.register(GetLastReviews.self) { r in GetLastReviews(repository: r.resolve(ReviewsRepository.self)!) }
+        container.register(SearchReviews.self) { r in SearchReviews(repository: r.resolve(ReviewsRepository.self)!) }
 
         // ViewModels
         container.register(ReviewsViewModel.self) { r in ReviewsViewModel(useCase: r.resolve(GetLastReviews.self)!) }

@@ -15,5 +15,9 @@ struct API {
         struct AllReviews {
             static var PATH: String = "\(API.BASE_URL)/all.json?api-key=\(API.API_KEY)"
         }
+        
+        struct SearchReviews {
+            static var PATH: String = "\(API.BASE_URL)/search.json?api-key=\(API.API_KEY)"
+        }
     }
 }

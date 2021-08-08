@@ -14,6 +14,8 @@ protocol ReviewsLocalDataSource {
     func getCachedReview() -> AnyPublisher<[ReviewModel], Failure>
     
     func cacheReviews(reviews: [ReviewModel]) -> Void
+    
+    func searchCachedReviews(title: String) -> AnyPublisher<[ReviewModel], Failure>
 }
 
 struct ReviewsLocalDataSourceImpl: ReviewsLocalDataSource {
@@ -34,24 +36,58 @@ struct ReviewsLocalDataSourceImpl: ReviewsLocalDataSource {
     }
     
     func cacheReviews(reviews: [ReviewModel]) {
-        reviews.forEach { model in
-            let data = ReviewData(context: viewContext)
-            data.display_title = model.display_title
-            data.byline = model.byline
-            data.favorite = false
-            data.headline = model.headline
-            data.imageUrl = model.multimedia?.src ?? ""
-            data.link = model.link.url
-            data.mpaa_rating = model.mpaa_rating
-            data.publication_date = model.publication_date
-            data.summary_short = model.summary_short
-            
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                print("Unresolved error \(nsError), \(nsError.userInfo)")
+        self.getCachedReview()
+            .sink { completion in
+                switch completion {
+                    case .failure(let e):
+                        print(e)
+                        break
+                    case .finished:
+                        break
+                }
+            } receiveValue: { value in
+                reviews.forEach { model in
+                    if value.first(where: { el in
+                        el.display_title == model.display_title
+                    }) != nil {
+                        return
+                    } else {
+                        let data = ReviewData(context: viewContext)
+                        data.display_title = model.display_title
+                        data.byline = model.byline
+                        data.favorite = false
+                        data.headline = model.headline
+                        data.imageUrl = model.multimedia?.src ?? ""
+                        data.link = model.link.url
+                        data.mpaa_rating = model.mpaa_rating
+                        data.publication_date = model.publication_date
+                        data.summary_short = model.summary_short
+                        
+                        do {
+                            try viewContext.save()
+                        } catch {
+                            let nsError = error as NSError
+                            print("Unresolved error \(nsError), \(nsError.userInfo)")
+                        }
+                    }
+                }
             }
+            .cancel()
+    }
+    
+    func searchCachedReviews(title: String) -> AnyPublisher<[ReviewModel], Failure> {
+        let request: NSFetchRequest<ReviewData> = ReviewData.fetchRequest()
+        let filterByTitle = NSPredicate(format: "display_title contains[cd] %@", title)
+        request.predicate = filterByTitle
+        
+        do {
+            let result = try viewContext.fetch(request)
+            let modelsList: [ReviewModel] = result.map { ReviewModel.fromLocalReview(data: $0) }
+            return Result.Publisher(modelsList)
+                .eraseToAnyPublisher()
+        } catch {
+            return Result.Publisher(Failure(type: .cache))
+                .eraseToAnyPublisher()
         }
     }
 }

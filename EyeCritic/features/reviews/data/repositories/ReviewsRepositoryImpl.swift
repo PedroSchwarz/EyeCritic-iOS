@@ -32,4 +32,20 @@ struct ReviewsRepositoryImpl: ReviewsRepository {
                 .eraseToAnyPublisher()
         }
     }
+    
+    func searchReviews(title: String) -> AnyPublisher<[Review], Failure> {
+        if network.isConnected() {
+            return remote.searchReviews(title: title)
+                .map({ result in
+                    result.results.map { $0.toReview() }
+                })
+                .eraseToAnyPublisher()
+        } else {
+            return local.searchCachedReviews(title: title)
+                .map({ result in
+                    result.map { $0.toReview() }
+                })
+                .eraseToAnyPublisher()
+        }
+    }
 }
