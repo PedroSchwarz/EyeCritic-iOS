@@ -18,7 +18,11 @@ struct LastReviewsScreen: View {
                 case .loading:
                     ReviewsLoading()
                 case .success(let reviews):
-                    ReviewsList(reviews: reviews)
+                    ReviewsList(reviews: reviews, hasRefresh: true, onRefresh: {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.viewModel.getLastReviews()
+                        }
+                    })
                         .navigationTitle("Latest Reviews")
                 case .failure(let error):
                     ReviewsError(error: error)

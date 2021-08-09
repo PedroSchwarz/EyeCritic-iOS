@@ -14,10 +14,14 @@ struct SearchReviewsScreen: View {
         NavigationView {
             VStack(spacing: 20) {
                 SearchReviewsSearchBar(
-                    title: self.$viewModel.title) {
+                    title: self.$viewModel.title,
+                    disabled: !self.viewModel.isValid
+                ) {
                         self.viewModel.clearTitleInput()
                     } onSubmit: {
-                        self.viewModel.searchReviews()
+                        if self.viewModel.isValid {
+                            self.viewModel.searchReviews()
+                        }
                     }
                 
                 switch self.viewModel.state {

@@ -18,14 +18,21 @@ enum SearchReviewsState {
 
 class SearchReviewsViewModel: ObservableObject {
     var useCase: SearchReviews
+
+    @Published private(set) var state: SearchReviewsState = .initial
+    @Published var title: String = ""
+    @Published private(set) var isValid: Bool = false
+    
+    private var cancellables = Set<AnyCancellable>()
     
     init(useCase: SearchReviews) {
         self.useCase = useCase
+        
+        isTitleValidPublisher
+            .receive(on: RunLoop.main)
+            .assign(to: \.isValid, on: self)
+            .store(in: &cancellables)
     }
-    
-    @Published var title: String = ""
-    @Published private(set) var state: SearchReviewsState = .initial
-    private var cancellables = Set<AnyCancellable>()
     
     func clearTitleInput() {
         self.title = ""
@@ -56,5 +63,15 @@ class SearchReviewsViewModel: ObservableObject {
             case .cache :
                 return "Error with device data"
         }
+    }
+    
+    private var isTitleValidPublisher: AnyPublisher<Bool, Never> {
+        $title
+            .debounce(for: 0.3, scheduler: RunLoop.main)
+            .removeDuplicates()
+            .map { input in
+                return input.count > 0
+            }
+            .eraseToAnyPublisher()
     }
 }

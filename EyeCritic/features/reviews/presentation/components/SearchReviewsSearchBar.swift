@@ -11,6 +11,7 @@ struct SearchReviewsSearchBar: View {
     @Binding var title: String
     @State private var showInput: Bool = false
     
+    var disabled: Bool
     var onClear: () -> Void
     var onSubmit: () -> Void
     
@@ -53,7 +54,7 @@ struct SearchReviewsSearchBar: View {
                 .overlay(
                     Button(action: self.onSubmit, label: {
                         Image(systemName: "arrow.forward")
-                            .foregroundColor(.white)
+                            .foregroundColor(.white.opacity(self.disabled ? 0.2 : 1))
                     })
                     .opacity(self.showInput ? 1 : 0)
                     .animation(.linear(duration: 0.1))
@@ -67,7 +68,7 @@ struct SearchReviewsSearchBar: View {
 
 struct SearchReviewsSearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchReviewsSearchBar(title: .constant(""), onClear: {
+        SearchReviewsSearchBar(title: .constant(""), disabled: true, onClear: {
             print("Cleared")
         }, onSubmit: {
             print("Submitted")
