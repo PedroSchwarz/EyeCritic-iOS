@@ -41,7 +41,10 @@ struct ReviewsList: View {
                                 label: {
                                     ReviewsListItem(review: item)
                                         .scaleEffect(
-                                            calcScale(minY: card.frame(in: .global).minY, height: UIScreen.main.bounds.height),
+                                            calcScale(
+                                                minY: card.frame(in: .global).minY,
+                                                height: UIScreen.main.bounds.height
+                                            ),
                                             anchor: .center
                                         )
                                         .animation(.spring(response: 0.6, dampingFraction: 0.6))
@@ -51,7 +54,10 @@ struct ReviewsList: View {
                     }
                     .padding(.horizontal, 10)
                 })
-                .padding(.top, self.setListTopPadding(scrollPosition: scroll.frame(in: .global).minY))
+                .padding(
+                    .top,
+                    self.setListTopPadding(scrollPosition: scroll.frame(in: .global).minY)
+                )
             }
             .frame(height: self.calcListHeight())
         }

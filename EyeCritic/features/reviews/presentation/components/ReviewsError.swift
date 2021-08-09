@@ -13,19 +13,19 @@ struct ReviewsError: View {
     var body: some View {
         VStack(alignment: .center, spacing: 20, content: {
             Circle()
-                .fill(Color.white)
+                .fill(Theme.Colors.appReviewCard)
                 .overlay(
                     Image(systemName: "tray.fill")
                             .resizable()
                             .scaledToFit()
-                            .foregroundColor(.blue)
+                            .foregroundColor(.accentColor)
                             .frame(width: 100, height: 100, alignment: .center)
                 )
                 .frame(width: 150, height: 150, alignment: .center)
                 .shadow(radius: 10, y: 10)
             Text(error)
                 .font(.system(size: 20, weight: .bold, design: .rounded))
-                .foregroundColor(.blue)
+                .foregroundColor(.accentColor)
         })
     }
 }
@@ -33,5 +33,6 @@ struct ReviewsError: View {
 struct ReviewsError_Previews: PreviewProvider {
     static var previews: some View {
         ReviewsError(error: "No reviews found for today")
+            
     }
 }

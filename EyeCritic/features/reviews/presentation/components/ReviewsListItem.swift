@@ -16,7 +16,11 @@ struct ReviewsListItem: View {
     var body: some View {
         VStack {
             if self.viewModel.image == nil {
-                CircularProgress(colors: [.white, .gray], accentColor: .purple, size: 50)
+                CircularProgress(
+                    colors: [Theme.Colors.appPink, .accentColor, Theme.Colors.appBlue],
+                    accentColor: .purple,
+                    size: 50
+                )
                     .padding(.vertical, 20)
             } else {
                 Image(uiImage: UIImage(data: self.viewModel.image!)!)
@@ -40,12 +44,11 @@ struct ReviewsListItem: View {
         .cornerRadius(10)
         .background(
             Rectangle()
-                .fill(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)).opacity(0.3))
+                .fill(Theme.Colors.appReviewCard)
                 .cornerRadius(10)
-                .blur(radius: 5)
-                .shadow(color: Color.black.opacity(0.1), radius: 2)
+                .blur(radius: 0)
+                .shadow(color: Color.black.opacity(0.5), radius: 5)
         )
-        .background(Color.white.opacity(0.1))
         .onAppear(perform: {
             self.viewModel.getProductImage(imageUrl: review.imageUrl)
         })

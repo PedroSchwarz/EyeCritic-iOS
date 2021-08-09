@@ -22,8 +22,7 @@ struct LastReviewsScreen: View {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             self.viewModel.getLastReviews()
                         }
-                    })
-                        .navigationTitle("Latest Reviews")
+                    }).navigationTitle("Latest Reviews")
                 case .failure(let error):
                     ReviewsError(error: error)
             }

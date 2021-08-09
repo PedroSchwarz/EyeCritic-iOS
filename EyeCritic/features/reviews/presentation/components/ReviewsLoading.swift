@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct ReviewsLoading: View {
-    var accentColor: Color = .purple
+    var accentColor: Color = .accentColor
     
     var body: some View {
         VStack(alignment: .center, spacing: 20, content: {
-            CircularProgress(colors: [.pink, .purple, .blue], accentColor: self.accentColor)
+            CircularProgress(
+                colors: [Theme.Colors.appPink, .accentColor, Theme.Colors.appBlue],
+                accentColor: self.accentColor
+            )
             
             HStack(spacing: 2) {
                 Text("Loading")

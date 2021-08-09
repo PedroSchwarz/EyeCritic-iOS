@@ -26,9 +26,13 @@ struct SearchReviewsSearchBar: View {
                 }
             }, label: {
                 Circle()
-                    .fill(Color.blue.opacity(0.6))
+                    .fill(self.showInput ? Theme.Colors.appPink : Theme.Colors.appBlue)
                     .frame(width: 48, height: 48, alignment: .center)
-                    .shadow(color: .blue.opacity(0.8), radius: 5, y: 4)
+                    .shadow(
+                        color: self.showInput ? Theme.Colors.appPink.opacity(0.5) :  Theme.Colors.appBlue.opacity(0.5),
+                        radius: 5,
+                        y: 4
+                    )
                     .overlay(
                         Image(systemName:
                                 self.showInput ?
@@ -45,7 +49,7 @@ struct SearchReviewsSearchBar: View {
             TextField("Movie title", text: self.$title, onCommit: self.onSubmit)
                 .foregroundColor(.black)
                 .padding(13)
-                .background(Color.secondary)
+                .background(Color.secondary.opacity(0.2))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .scaleEffect(x: self.showInput ? 1 : 0, y: 1, anchor: .leading)
                 .animation(.easeOut)
@@ -57,7 +61,7 @@ struct SearchReviewsSearchBar: View {
                             .foregroundColor(.white.opacity(self.disabled ? 0.2 : 1))
                     })
                     .opacity(self.showInput ? 1 : 0)
-                    .animation(.linear(duration: 0.1))
+                    .animation(.linear(duration: self.showInput ? 1 : 0.1))
                     .padding(.trailing, 10),
                     alignment: .trailing
                 )

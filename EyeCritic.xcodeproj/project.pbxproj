@@ -35,6 +35,8 @@
 		3420275426C1A80000B43C05 /* ReviewDetailsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420275326C1A80000B43C05 /* ReviewDetailsSectionHeader.swift */; };
 		3420275626C1A9FB00B43C05 /* ReviewDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420275526C1A9FB00B43C05 /* ReviewDetailsViewModel.swift */; };
 		3420275926C1AF8400B43C05 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420275826C1AF8400B43C05 /* DateFormatters.swift */; };
+		3420275B26C1B4C600B43C05 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420275A26C1B4C600B43C05 /* Theme.swift */; };
+		3420275D26C1B5CD00B43C05 /* ReviewDetailsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420275C26C1B5CD00B43C05 /* ReviewDetailsSection.swift */; };
 		342192F626BF73870097FA8A /* ReviewsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342192F526BF73870097FA8A /* ReviewsListItem.swift */; };
 		342192F826BF8A660097FA8A /* ReviewsListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342192F726BF8A660097FA8A /* ReviewsListItemViewModel.swift */; };
 		342192FA26BFA31A0097FA8A /* CircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342192F926BFA31A0097FA8A /* CircularProgress.swift */; };
@@ -102,6 +104,8 @@
 		3420275326C1A80000B43C05 /* ReviewDetailsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailsSectionHeader.swift; sourceTree = "<group>"; };
 		3420275526C1A9FB00B43C05 /* ReviewDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailsViewModel.swift; sourceTree = "<group>"; };
 		3420275826C1AF8400B43C05 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
+		3420275A26C1B4C600B43C05 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		3420275C26C1B5CD00B43C05 /* ReviewDetailsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailsSection.swift; sourceTree = "<group>"; };
 		342192F526BF73870097FA8A /* ReviewsListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsListItem.swift; sourceTree = "<group>"; };
 		342192F726BF8A660097FA8A /* ReviewsListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsListItemViewModel.swift; sourceTree = "<group>"; };
 		342192F926BFA31A0097FA8A /* CircularProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgress.swift; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 				342192F926BFA31A0097FA8A /* CircularProgress.swift */,
 				342DD57F26C0824000F49676 /* SearchReviewsSearchBar.swift */,
 				3420275326C1A80000B43C05 /* ReviewDetailsSectionHeader.swift */,
+				3420275C26C1B5CD00B43C05 /* ReviewDetailsSection.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				340C1F6E26BDCA0300CAECEB /* API.swift */,
+				3420275A26C1B4C600B43C05 /* Theme.swift */,
 			);
 			path = constants;
 			sourceTree = "<group>";
@@ -622,6 +628,7 @@
 				340C1F9D26BDEB3C00CAECEB /* ReviewsLocalDataSource.swift in Sources */,
 				340C1F3026BDAE8800CAECEB /* Persistence.swift in Sources */,
 				340C1F9426BDE6E700CAECEB /* NetworkInfo.swift in Sources */,
+				3420275D26C1B5CD00B43C05 /* ReviewDetailsSection.swift in Sources */,
 				340C1F8B26BDE0B400CAECEB /* ReviewModel.swift in Sources */,
 				3484440326BF0A7C00232462 /* ReviewsError.swift in Sources */,
 				340C1F8926BDE00600CAECEB /* Review.swift in Sources */,
@@ -646,6 +653,7 @@
 				340C1F6F26BDCA0300CAECEB /* API.swift in Sources */,
 				340C1F8D26BDE0F800CAECEB /* ApiResult.swift in Sources */,
 				340C1F3326BDAE8800CAECEB /* EyeCritic.xcdatamodeld in Sources */,
+				3420275B26C1B4C600B43C05 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

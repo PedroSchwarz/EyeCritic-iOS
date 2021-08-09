@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ReviewDetailsScreen: View {
-    @Environment(\.openURL) var openURL
     @StateObject private var viewModel = AppModules.container.resolve(ReviewDetailsViewModel.self)!
     
     var review: Review
@@ -20,7 +19,11 @@ struct ReviewDetailsScreen: View {
                 if self.viewModel.image == nil {
                     HStack {
                         Spacer()
-                        CircularProgress(colors: [.white, .gray], accentColor: .purple, size: 50)
+                        CircularProgress(
+                            colors: [Theme.Colors.appPink, .accentColor, Theme.Colors.appBlue],
+                            accentColor: .accentColor,
+                            size: 50
+                        )
                         Spacer()
                     }
                     .padding(.vertical, 20)
@@ -47,38 +50,33 @@ struct ReviewDetailsScreen: View {
                         .offset(x: 0, y: self.animate ? 0 : 10)
                         .animation(.easeOut(duration: 0.4))
                     
-                    Section(header: ReviewDetailsSectionHeader(
-                                icon: "link",
-                                title: "Article Link")
-                    ) {
-                        Button(review.displayTitle) {
-                            openURL(URL(string: review.link)!)
-                        }
-                    }
+                    ReviewDetailsSection(
+                        icon: "link",
+                        title: "Article Link",
+                        content: review.displayTitle,
+                        link: review.link
+                    )
                     .offset(x: 0, y: self.animate ? 0 : 10)
                     .animation(.easeOut(duration: 0.6))
                     
-                    Section(header: ReviewDetailsSectionHeader(
-                                icon: "figure.wave",
-                                title: "Written by")
-                    ) {
-                        Text(review.byLine)
-                    }
+                    ReviewDetailsSection(
+                        icon: "figure.wave",
+                        title:  "Written by",
+                        content: review.byLine
+                    )
                     .offset(x: 0, y: self.animate ? 0 : 10)
                     .animation(.easeOut(duration: 0.8))
                     
-                    Section(header: ReviewDetailsSectionHeader(
-                                icon: "calendar",
-                                title: "Publication Date")
-                    ) {
-                        Text(review.formattedDate)
-                    }
+                    ReviewDetailsSection(
+                        icon: "calendar",
+                        title: "Publication Date",
+                        content: review.formattedDate
+                    )
                     .offset(x: 0, y: self.animate ? 0 : 10)
                     .animation(.easeOut(duration: 1))
                 })
                 .padding(.horizontal, 20)
-                
-                Spacer()
+                .padding(.bottom, 20)
             }
         }
         .edgesIgnoringSafeArea(.top)

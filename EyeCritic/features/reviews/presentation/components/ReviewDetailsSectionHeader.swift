@@ -18,7 +18,8 @@ struct ReviewDetailsSectionHeader: View {
                 Spacer()
                 Image(systemName: icon)
             }
-            .foregroundColor(.purple)
+            .font(.system(size: 18, weight: .bold, design: .rounded))
+            .foregroundColor(.accentColor)
         })
     }
 }

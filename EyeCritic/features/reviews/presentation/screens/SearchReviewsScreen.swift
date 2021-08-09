@@ -26,7 +26,6 @@ struct SearchReviewsScreen: View {
                 
                 switch self.viewModel.state {
                     case .initial:
-                        EmptyView()
                         Spacer()
                     case .loading:
                         Spacer()
