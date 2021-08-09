@@ -18,7 +18,18 @@ struct Review: Identifiable, Equatable {
     var link: String
     var favorite: Bool
     
+    // Id for ForEach view
     var id: String {
         displayTitle
+    }
+    
+    // Formatted publication date
+    var formattedDate: String {
+        if let date = DateFormatters.fromStringFormat.date(from: self.publicationDate) {
+            let formatter = DateFormatters.localDateFormat
+            return formatter.string(from: date)
+        } else {
+            return "N/A"
+        }
     }
 }
