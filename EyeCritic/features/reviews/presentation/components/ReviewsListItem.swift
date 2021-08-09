@@ -26,6 +26,17 @@ struct ReviewsListItem: View {
                 Image(uiImage: UIImage(data: self.viewModel.image!)!)
                     .resizable()
                     .frame(height: 90, alignment: .center)
+                    .overlay(
+                        Capsule()
+                            .fill(Color.accentColor)
+                            .frame(width: 40, height: 30)
+                            .overlay(
+                                Text(review.rating.isEmpty ? "NA" : review.rating)
+                                    .foregroundColor(.white)
+                            )
+                            .offset(x: -2, y: -5),
+                        alignment: .bottomTrailing
+                    )
             }
             
             VStack(alignment: .leading, spacing: 10) {

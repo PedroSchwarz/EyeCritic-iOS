@@ -35,6 +35,20 @@ struct ReviewDetailsScreen: View {
                         .frame(width: UIScreen.main.bounds.width, height: 500)
                         .cornerRadius(20)
                         .shadow(color: .secondary.opacity(0.3), radius: 10, y: 4)
+                        .overlay(
+                            Circle()
+                                .fill(Color.accentColor)
+                                .frame(width: 64, height: 64)
+                                .overlay(
+                                    Text(review.rating.isEmpty ? "NA" : review.rating)
+                                        .foregroundColor(.white)
+                                        .font(.title)
+                                        .bold()
+                                )
+                                .offset(x: 0, y: 25)
+                                .shadow(color: .accentColor.opacity(1), radius: 5, y: 2),
+                            alignment: .bottom
+                        )
                 }
                 
                 VStack(alignment: .leading, spacing: 20, content: {
@@ -75,6 +89,7 @@ struct ReviewDetailsScreen: View {
                     .offset(x: 0, y: self.animate ? 0 : 10)
                     .animation(.easeOut(duration: 1))
                 })
+                .padding(.top, self.viewModel.image != nil ? 20 : 0)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 20)
             }
