@@ -40,11 +40,18 @@ struct AppModules {
         // UseCases
         container.register(GetLastReviews.self) { r in GetLastReviews(repository: r.resolve(ReviewsRepository.self)!) }
         container.register(SearchReviews.self) { r in SearchReviews(repository: r.resolve(ReviewsRepository.self)!) }
+        container.register(ToggleReviewFavorite.self) { r in ToggleReviewFavorite(repository: r.resolve(ReviewsRepository.self)!) }
+        container.register(GetFavoriteReviews.self) { r in GetFavoriteReviews(repository: r.resolve(ReviewsRepository.self)!) }
+        container.register(GetReviewFavoriteStatus.self) { r in GetReviewFavoriteStatus(repository: r.resolve(ReviewsRepository.self)!) }
 
         // ViewModels
         container.register(ReviewsViewModel.self) { r in ReviewsViewModel(useCase: r.resolve(GetLastReviews.self)!) }
         container.register(ReviewsListItemViewModel.self) { _ in ReviewsListItemViewModel() }
         container.register(SearchReviewsViewModel.self) { r in SearchReviewsViewModel(useCase: r.resolve(SearchReviews.self)!) }
-        container.register(ReviewDetailsViewModel.self) { _ in ReviewDetailsViewModel() }
+        container.register(ReviewDetailsViewModel.self) { r in ReviewDetailsViewModel(
+            toggleUseCase: r.resolve(ToggleReviewFavorite.self)!,
+            favoriteStatusUseCase: r.resolve(GetReviewFavoriteStatus.self)!
+        )}
+        container.register(FavoriteReviewsViewModel.self) { r in FavoriteReviewsViewModel(useCase: r.resolve(GetFavoriteReviews.self)!) }
     }
 }

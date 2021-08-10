@@ -11,23 +11,28 @@ import SwiftUI
 import CoreData
 
 protocol ReviewsLocalDataSource {
-    func getCachedReview() -> AnyPublisher<[ReviewModel], Failure>
+    func getCachedReview() -> AnyPublisher<[ReviewData], Failure>
     
     func cacheReviews(reviews: [ReviewModel]) -> Void
     
     func searchCachedReviews(title: String) -> AnyPublisher<[ReviewModel], Failure>
+    
+    func getFavoriteReviews() -> AnyPublisher<[Review], Failure>
+    
+    func insertOrUpdateReview(review: Review) -> AnyPublisher<Void, Failure>
+    
+    func getReviewFavoriteStatus(review: Review) -> AnyPublisher<Bool, Failure>
 }
 
 struct ReviewsLocalDataSourceImpl: ReviewsLocalDataSource {
     var viewContext: NSManagedObjectContext
     
-    func getCachedReview() -> AnyPublisher<[ReviewModel], Failure> {
+    func getCachedReview() -> AnyPublisher<[ReviewData], Failure> {
         let request: NSFetchRequest<ReviewData> = ReviewData.fetchRequest()
         
         do {
             let result = try viewContext.fetch(request)
-            let modelsList: [ReviewModel] = result.map { ReviewModel.fromLocalReview(data: $0) }
-            return Result.Publisher(modelsList)
+            return Result.Publisher(result)
                 .eraseToAnyPublisher()
         } catch {
             return Result.Publisher(Failure(type: .cache))
@@ -89,5 +94,82 @@ struct ReviewsLocalDataSourceImpl: ReviewsLocalDataSource {
             return Result.Publisher(Failure(type: .cache))
                 .eraseToAnyPublisher()
         }
+    }
+    
+    func getFavoriteReviews() -> AnyPublisher<[Review], Failure> {
+        let request: NSFetchRequest<ReviewData> = ReviewData.fetchRequest()
+        let filterByFavorite = NSPredicate(format: "favorite == YES")
+        request.predicate = filterByFavorite
+        
+        do {
+            let result = try viewContext.fetch(request)
+            let reviews: [Review] = result.map {
+                Review(
+                    displayTitle: $0.display_title!,
+                    rating: $0.mpaa_rating!,
+                    byLine: $0.byline!,
+                    headline: $0.headline!,
+                    summary: $0.summary_short!,
+                    publicationDate: $0.publication_date!,
+                    imageUrl: $0.imageUrl!,
+                    link: $0.link!,
+                    favorite: $0.favorite
+                )
+            }
+            return Result.Publisher(reviews)
+                .eraseToAnyPublisher()
+        } catch {
+            return Result.Publisher(Failure(type: .cache))
+                .eraseToAnyPublisher()
+        }
+    }
+    
+    func insertOrUpdateReview(review: Review) -> AnyPublisher<Void, Failure> {
+        self.getCachedReview()
+            .tryMap({ data in
+                if let cachedReview = data.first(where: { $0.display_title == review.displayTitle }) {
+                    do {
+                        cachedReview.favorite = !cachedReview.favorite
+                        try self.viewContext.save()
+                        return
+                    } catch {
+                        throw Failure(type: .cache)
+                    }
+                } else {
+                    let newReview = ReviewData(context: viewContext)
+                    newReview.display_title = review.displayTitle
+                    newReview.byline = review.byLine
+                    newReview.headline = review.headline
+                    newReview.mpaa_rating = review.rating
+                    newReview.publication_date = review.publicationDate
+                    newReview.imageUrl = review.imageUrl
+                    newReview.link = review.link
+                    newReview.favorite = true
+                    newReview.summary_short = review.summary
+                    
+                    do {
+                        try self.viewContext.save()
+                        return
+                    } catch {
+                        throw Failure(type: .cache)
+                    }
+                }
+            })
+            .mapError({ error in
+                return Failure(type: .cache)
+            })
+            .eraseToAnyPublisher()
+    }
+    
+    func getReviewFavoriteStatus(review: Review) -> AnyPublisher<Bool, Failure> {
+        self.getCachedReview()
+            .map({ data in
+                if let cachedReview = data.first(where: { $0.display_title == review.displayTitle }) {
+                    return cachedReview.favorite
+                } else {
+                    return false
+                }
+            })
+            .eraseToAnyPublisher()
     }
 }

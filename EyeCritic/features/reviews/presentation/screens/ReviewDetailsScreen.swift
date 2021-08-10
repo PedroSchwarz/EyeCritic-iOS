@@ -16,39 +16,13 @@ struct ReviewDetailsScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                if self.viewModel.image == nil {
-                    HStack {
-                        Spacer()
-                        CircularProgress(
-                            colors: [Theme.Colors.appPink, .accentColor, Theme.Colors.appBlue],
-                            accentColor: .accentColor,
-                            size: 50
-                        )
-                        Spacer()
-                    }
-                    .padding(.vertical, 20)
-                    .padding(.top, 100)
-                } else {
-                    Image(uiImage: UIImage(data: self.viewModel.image!)!)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: UIScreen.main.bounds.width, height: 500)
-                        .cornerRadius(20)
-                        .shadow(color: .secondary.opacity(0.3), radius: 10, y: 4)
-                        .overlay(
-                            Circle()
-                                .fill(Color.accentColor)
-                                .frame(width: 64, height: 64)
-                                .overlay(
-                                    Text(review.rating.isEmpty ? "NA" : review.rating)
-                                        .foregroundColor(.white)
-                                        .font(.title)
-                                        .bold()
-                                )
-                                .offset(x: 0, y: 25)
-                                .shadow(color: .accentColor.opacity(1), radius: 5, y: 2),
-                            alignment: .bottom
-                        )
+                ReviewDetailsHero(
+                    image: self.viewModel.image,
+                    rating: review.rating,
+                    isFavorite: self.viewModel.favorite
+                ) {
+                    self.viewModel.toggleReviewFavorite(review: review)
+                    self.viewModel.getReviewFavoriteStatus(review: review)
                 }
                 
                 VStack(alignment: .leading, spacing: 20, content: {
@@ -94,8 +68,18 @@ struct ReviewDetailsScreen: View {
                 .padding(.bottom, 20)
             }
         }
+        .overlay(
+            ReviewFavoriteUpdateAlert(
+                show: self.viewModel.state == .failure || self.viewModel.state == .success,
+                state: self.viewModel.state
+            ),
+            alignment: .bottom
+        )
         .edgesIgnoringSafeArea(.top)
         .onAppear(perform: {
+            // Get review favorite status
+            self.viewModel.getReviewFavoriteStatus(review: review)
+            // Fetch review image for network
             self.viewModel.getProductImage(imageUrl: review.imageUrl)
             withAnimation {
                 self.animate = true

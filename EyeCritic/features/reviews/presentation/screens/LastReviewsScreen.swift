@@ -12,20 +12,23 @@ struct LastReviewsScreen: View {
     
     var body: some View {
         NavigationView {
-            switch viewModel.state {
-                case .initial:
-                    ReviewsLoading()
-                case .loading:
-                    ReviewsLoading()
-                case .success(let reviews):
-                    ReviewsList(reviews: reviews, hasRefresh: true, onRefresh: {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            self.viewModel.getLastReviews()
-                        }
-                    }).navigationTitle("Latest Reviews")
-                case .failure(let error):
-                    ReviewsError(error: error)
+            VStack {
+                switch viewModel.state {
+                    case .initial:
+                        ReviewsLoading()
+                    case .loading:
+                        ReviewsLoading()
+                    case .success(let reviews):
+                        ReviewsList(reviews: reviews, hasRefresh: true, onRefresh: {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                self.viewModel.getLastReviews()
+                            }
+                        })
+                    case .failure(let error):
+                        ReviewsError(error: error)
+                }
             }
+            .navigationTitle("Latest Reviews")
         }
         .onAppear {
             self.viewModel.getLastReviews()

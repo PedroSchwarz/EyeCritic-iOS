@@ -20,6 +20,11 @@ struct ReviewTabView: View {
                     Image(systemName: "magnifyingglass")
                     Text("Search Reviews")
                 }
+            FavoriteReviewsScreen()
+                .tabItem {
+                    Image(systemName: "heart")
+                    Text("Favorites")
+                }
         }
     }
 }

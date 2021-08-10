@@ -27,7 +27,7 @@ struct ReviewsRepositoryImpl: ReviewsRepository {
         } else {
             return local.getCachedReview()
                 .map({ result in
-                    result.map { $0.toReview() }
+                    result.map { ReviewModel.fromLocalReview(data: $0).toReview() }
                 })
                 .eraseToAnyPublisher()
         }
@@ -47,5 +47,20 @@ struct ReviewsRepositoryImpl: ReviewsRepository {
                 })
                 .eraseToAnyPublisher()
         }
+    }
+    
+    func toggleReviewFavorite(review: Review) -> AnyPublisher<Void, Failure> {
+        return local.insertOrUpdateReview(review: review)
+            .eraseToAnyPublisher()
+    }
+    
+    func getFavoriteReviews() -> AnyPublisher<[Review], Failure> {
+        return local.getFavoriteReviews()
+            .eraseToAnyPublisher()
+    }
+    
+    func getReviewFavoriteStatus(review: Review) -> AnyPublisher<Bool, Failure> {
+        return local.getReviewFavoriteStatus(review: review)
+            .eraseToAnyPublisher()
     }
 }
