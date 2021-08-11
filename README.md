@@ -1,7 +1,7 @@
 <div align="center"><h1> Eye Critic App </h1>
   <strong>The New York Times Movie Reviews</strong>
   <br>
-  
+  <img src="/logo_eye_critic.png" width="150">
   <br>
 </div>
 
