@@ -25,7 +25,8 @@ struct ReviewsListItem: View {
             } else {
                 Image(uiImage: UIImage(data: self.viewModel.image!)!)
                     .resizable()
-                    .frame(height: 90, alignment: .center)
+                    .scaledToFill()
+                    .frame(height: 120, alignment: .center)
                     .overlay(
                         Capsule()
                             .fill(Color.accentColor)

@@ -50,7 +50,7 @@ struct ReviewsList: View {
                                         .animation(.spring(response: 0.6, dampingFraction: 0.6))
                                 })
                         }
-                        .frame(minHeight: 200, maxHeight: 300)
+                        .frame(minHeight: 230, maxHeight: 300)
                     }
                     .padding(.horizontal, 10)
                 })
@@ -86,10 +86,10 @@ struct ReviewsList: View {
         // If reviews count is even
         if self.reviews.count % 2 == 0 {
             // Return reviews count by half times item height
-            return CGFloat((self.reviews.count / 2) * 210)
+            return CGFloat((self.reviews.count / 2) * 240)
         } else {
             // return reviews count by half plus one, times item height
-            return CGFloat(((self.reviews.count / 2) + 1) * 210)
+            return CGFloat(((self.reviews.count / 2) + 1) * 240)
         }
     }
     
